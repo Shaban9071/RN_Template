@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "225030072440",
+    "project_id": "scopepilot-fd263",
+    "storage_bucket": "scopepilot-fd263.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225030072440:android:1871aac07adbb40e06a58d",
+        "android_client_info": {
+          "package_name": "com.scopepilot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG7lea01BVnKAbHPjN4DVD_I-2b1yeY8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

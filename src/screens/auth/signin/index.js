@@ -1,42 +1,50 @@
 import React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
-import { Text, TextInputs, Buttons, Spacer, AuthLayout } from '../../../components';
+import { Pressable } from 'react-native';
+import { Text, TextInputs, Buttons, Spacer, AuthLayout ,Wrapper, Loaders} from '../../../components';
 import { useHooks } from "./hooks"
-import { routes, responsiveFontSize, responsiveWidth, responsiveHeight, colors, appStyles } from '../../../services';
-import Wrapper from '../../../components/wrapper';
+import {  responsiveFontSize, responsiveWidth,  colors, appStyles } from '../../../services';
 import { Icon } from '@rneui/base';
 
 export default function Index(props) {
 
 
   const {
-    handleLogin,
+    navigation,
+    
     socialApps,
     handleSignUp,
     handleForgetPassword,
     email, setEmail,
     password, setPassword,
-    showPassword, setShowPassword
+    showPassword, setShowPassword,
+
+    emailError,setEmailError,
+    passwordError,setPasswordError,
+    handleSignin,
+    handleEmailChange,handlePasswordChange,
+
+    isloading
   } = useHooks()
 
   return (
     <AuthLayout>
       <Spacer isSmall />
       <Wrapper alignItemsCenter>
-        <Text isSmallTitle isWhite>Welcome Back</Text>
-        <Text isGray isRegularFont>Sign in to access your Scopepilot</Text>
+        <Text isBoldTextH5>Welcome Back</Text>
+        <Text isGray isRegTextMed>Sign in to access your Scopepilot</Text>
       </Wrapper>
       <Spacer isDoubleBase />
       <TextInputs.Underlined
         value={email}
-        onChangeText={(text) => setEmail(text)}
+        onChangeText={handleEmailChange}
         placeholder={'you@example.com'}
         inputTitle={"Email"}
+        error={emailError}
       />
       <Spacer isBasic />
       <TextInputs.Underlined
         value={password}
-        onChangeText={(text) => setPassword(text)}
+        onChangeText={handlePasswordChange}
         placeholder={'*******'}
         secureTextEntry={!showPassword}
         inputTitle={"Password"}
@@ -46,7 +54,7 @@ export default function Index(props) {
             : null
         }
         onPressIconRight={() => setShowPassword(!showPassword)}
-
+        error={passwordError}
       />
       <Spacer isBasic />
       <Pressable
@@ -56,20 +64,20 @@ export default function Index(props) {
 
         }}
       >
-        <Text isWhite isSmall alignTextRight>
+        <Text isSemiTextReg alignTextRight>
           Forget password?
         </Text>
       </Pressable>
       <Spacer isBasic />
       <Buttons.Colored
         text="Log in"
-        onPress={handleLogin}
+        onPress={handleSignin}
       />
       <Spacer isBasic />
       <Wrapper flexDirectionRow alignItemsCenter style={{ paddingHorizontal: responsiveWidth(5) }}>
-        <Wrapper flex={1} style={{ backgroundColor: colors.appColor2, height: responsiveWidth(.1) }} />
-        <Text isGray isSmall style={{ paddingHorizontal: responsiveWidth(3) }}>or with</Text>
-        <Wrapper flex={1} height={1} style={{ backgroundColor: colors.appColor2, height: responsiveWidth(.1) }} />
+        <Wrapper flex={1} style={{ backgroundColor: colors.appColor5, height: responsiveWidth(.1) }} />
+        <Text isGray isRegTextReg style={{ paddingHorizontal: responsiveWidth(3) }}>or with</Text>
+        <Wrapper flex={1} height={1} style={{ backgroundColor: colors.appColor5, height: responsiveWidth(.1) }} />
       </Wrapper>
       <Spacer isBasic />
       <Wrapper flexDirectionRow justifyContentSpaceEvenly >
@@ -78,7 +86,7 @@ export default function Index(props) {
             <Icon
               name={item.name}
               type={'font-awesome'}
-              color={colors.appBgColor1}
+              color={colors.appColor2}
               size={responsiveFontSize(18)}
             />
           </Pressable>
@@ -86,22 +94,22 @@ export default function Index(props) {
       </Wrapper>
       <Spacer isBasic />
       <Wrapper flexDirectionRow alignItemsCenter justifyContentCenter>
-        <Text isGray isSmall>Don't have an account?{" "}</Text>
+        <Text isGray isRegTextReg>Don't have an account?{" "}</Text>
         <Pressable
           onPress={handleSignUp}
-
         >
           <Text
-            isSmall
+        isRegTextReg
             isUnderlined
-            style={{ color: colors.appColor5 }}
+            style={{ color: colors.appTextColor4 }}
           >
             Sign Up
-          </Text>
+            </Text>
         </Pressable>
       </Wrapper>
       <Spacer isSmall />
 
+      <Loaders.Secondary isVisible={isloading}/>
     </AuthLayout>
   );
 }

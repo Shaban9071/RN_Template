@@ -28,11 +28,23 @@ export const routes = {
 
     //app
     bottomTab: 'bottomTab',
+    drawTab:'drawTab',
     home: 'home',
     account: 'account',
     shop: 'shop',
     community: 'community',
     postDetail: 'postDetail',
+    scope:'scope',
+    estimate:'estimate',
+    milestone:'milestone',
+    testcases:'testcases',
+    summary:'summary',
+    requirements:'requirements',
+    scopestack:'scopestack',
+    chat:'chat',
+    messages:"messages",
+    clientrequest:'clientrequest',
+    landingpage:'landingpage',
    
     smartFoodJournal: 'smartFoodJournal',
     sprayLogs: 'sprayLogs',

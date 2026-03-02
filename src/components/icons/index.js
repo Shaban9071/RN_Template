@@ -134,7 +134,7 @@ export function WithText  ({ text, containerStyle, title, customIcon, onPress, t
                     customIcon ?
                         <Custom icon={customIcon} size={defaulIconSize} color={tintColor && tintColor} />
                         :
-                        <Icon name={iconName ? iconName : 'email'} type={iconType ? iconType : 'material-community'} size={defaulIconSize} color={tintColor ? tintColor : colors.appTextColor1} iconStyle={iconStyle} />
+                         null
             }
             <Wrapper style={[direction === 'column' ? { marginVertical: responsiveHeight(1.5) } : { marginHorizontal: responsiveWidth(2) }, textContainerStyle]}>
                 {

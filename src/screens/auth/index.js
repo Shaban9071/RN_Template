@@ -7,5 +7,10 @@ import SentEmail from "./sentEmail"
 
 
 export {
-    Splash,Signin,CreateAccount,ForgetPassword,SentEmail,ResetPassword
+    Splash,
+    Signin,
+    CreateAccount,
+    ForgetPassword,
+    SentEmail,
+    ResetPassword
 }

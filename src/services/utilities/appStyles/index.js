@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
-import { sizes,fontSizes } from '../sizes'
+import { sizes, fontSizes } from '../sizes'
 import { colors } from '../colors'
 import { appFonts } from '../assets'
-import{responsiveHeight,responsiveWidth,responsiveFontSize} from '../responsive'
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from '../responsive'
 
 export const appStyles = StyleSheet.create({
   bgContainer: {
@@ -89,6 +89,343 @@ export const appStyles = StyleSheet.create({
     color: colors.appTextColor1,
     fontFamily: appFonts.appTextRegular
   },
+  //Light Text
+  lightTextTiny: {
+    fontFamily: appFonts.appTextLight,
+    fontSize: fontSizes.tiny,
+    color: colors.appTextColor1
+
+  },
+
+  lightTextSmall: {
+    fontFamily: appFonts.appTextLight,
+    fontSize: fontSizes.small,
+    color: colors.appTextColor1
+
+  },
+
+  lightTextRegular: {
+    fontFamily: appFonts.appTextLight,
+    fontSize: fontSizes.regular,
+    color: colors.appTextColor1
+
+  },
+
+  lightTextMedium: {
+    fontFamily: appFonts.appTextLight,
+    fontSize: fontSizes.medium,
+    color: colors.appTextColor1
+
+  },
+
+  // Regular Text
+  regTextTiny: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.tiny,
+    color: colors.appTextColor1
+
+  },
+
+  regTextSmall: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.small,
+    color: colors.appTextColor1
+
+  },
+
+  regTextRegular: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.regular,
+    color: colors.appTextColor1
+
+  },
+
+  regTextMedium: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.medium,
+    color: colors.appTextColor1
+
+  },
+  regTextH1: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.h1,
+    color: colors.appTextColor1
+
+  },
+  regTextH2: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.h2,
+    color: colors.appTextColor1
+
+  },
+  regTextH3: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.h3,
+    color: colors.appTextColor1
+
+  },
+  regTextH4: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.h4,
+    color: colors.appTextColor1
+
+  },
+  regTextH5: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.h5,
+    color: colors.appTextColor1
+
+  },
+  regTextH6: {
+    fontFamily: appFonts.appTextRegular,
+    fontSize: fontSizes.h6,
+    color: colors.appTextColor1
+
+  },
+  //Medium Text
+  medTextTiny: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.tiny,
+    color: colors.appTextColor1
+
+  },
+
+  medTextSmall: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.small,
+    color: colors.appTextColor1
+
+  },
+
+  medTextRegular: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.regular,
+    color: colors.appTextColor1
+
+  },
+
+  medTextMedium: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.medium,
+    color: colors.appTextColor1
+
+  },
+  medTextH1: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.h1,
+    color: colors.appTextColor1
+
+  },
+  medTextH2: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.h2,
+    color: colors.appTextColor1
+
+  },
+  medTextH3: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.h3,
+    color: colors.appTextColor1
+
+  },
+  medTextH4: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.h4,
+    color: colors.appTextColor1
+
+  },
+  medTextH5: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.h5,
+    color: colors.appTextColor1
+
+  },
+  medTextH6: {
+    fontFamily: appFonts.appTextMedium,
+    fontSize: fontSizes.h6,
+    color: colors.appTextColor1
+
+  },
+  //Semi Bold
+  semiTextTiny: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.tiny,
+    color: colors.appTextColor1
+
+  },
+
+  semiTextSmall: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.small,
+    color: colors.appTextColor1
+
+  },
+
+  semiTextRegular: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.regular,
+    color: colors.appTextColor1
+
+  },
+
+  semiTextMedium: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.medium,
+    color: colors.appTextColor1
+
+  },
+  semiTextH1: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.h1,
+    color: colors.appTextColor1
+
+  },
+  semiTextH2: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.h2,
+    color: colors.appTextColor1
+
+  },
+  semiTextH3: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.h3,
+    color: colors.appTextColor1
+
+  },
+  semiTextH4: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.h4,
+    color: colors.appTextColor1
+
+  },
+  semiTextH5: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.h5,
+    color: colors.appTextColor1
+
+  },
+  semiTextH6: {
+    fontFamily: appFonts.appTextSemiBold,
+    fontSize: fontSizes.h6,
+    color: colors.appTextColor1
+
+  },
+  //Bold Text
+  boldTextTiny: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.tiny,
+    color: colors.appTextColor1
+
+  },
+
+  boldTextSmall: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.small,
+    color: colors.appTextColor1
+
+  },
+
+  boldTextRegular: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.regular,
+    color: colors.appTextColor1
+
+  },
+
+  boldTextMedium: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.medium,
+    color: colors.appTextColor1
+
+  },
+  boldTextH1: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.h1,
+    color: colors.appTextColor1
+
+  },
+  boldTextH2: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.h2,
+    color: colors.appTextColor1
+
+  },
+  boldTextH3: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.h3,
+    color: colors.appTextColor1
+
+  },
+  boldTextH4: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.h4,
+    color: colors.appTextColor1
+
+  },
+  boldTextH5: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.h5,
+    color: colors.appTextColor1
+
+  },
+  boldTexth6: {
+    fontFamily: appFonts.appTextBold,
+    fontSize: fontSizes.h6,
+    color: colors.appTextColor1
+
+  },
+
+  iconCard: {
+    width: responsiveWidth(24),
+    height: responsiveWidth(25),
+    borderRadius: responsiveWidth(2),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1.5,
+  },
+  selectedIconCard: {
+    borderColor: colors.appBgColor2, // Orange
+    borderStyle: 'solid',
+  },
+  unselectedIconCard: {
+    borderColor: colors.appColor11,
+    borderStyle: 'dashed',
+  },
+  summaryOptions: {
+    justifyContent: "center",
+    marginRight: responsiveWidth(2),
+    borderColor: colors.appColor9,
+    borderWidth: 1,
+    marginBottom: responsiveHeight(1),
+    borderRadius: responsiveWidth(2),
+    height: responsiveHeight(4)
+  },
+  summaryCardContainer: {
+    borderWidth: 1,
+    borderRadius: responsiveWidth(5),
+    borderLeftWidth: 10,
+    height: responsiveWidth(20),
+    width: responsiveWidth(40),
+    marginBottom: responsiveHeight(1.5)
+  },
+  milestoneCardContainer: {
+    width: responsiveWidth(92),
+    backgroundColor: colors.black,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: colors.appColor9,
+    borderTopWidth: responsiveHeight(1),
+    marginBottom: responsiveHeight(2),
+    overflow: 'hidden'
+  },
+  featureChipStyle: {
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    marginTop: 4,
+  },
+
   inputContainerUnderLined: {
     marginHorizontal: responsiveWidth(5),
     flexDirection: 'row',
@@ -98,7 +435,7 @@ export const appStyles = StyleSheet.create({
     borderBottomColor: '#FFFF'
   },
   inputContainerBorderd: {
-    marginHorizontal: responsiveWidth(5),
+
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
@@ -112,6 +449,22 @@ export const appStyles = StyleSheet.create({
     justifyContent: 'space-evenly',
     backgroundColor: '#FFFF',
     borderRadius: 2.5
+  },
+  helpYouContainer: {
+    width: responsiveWidth(88),
+    height: responsiveHeight(5), // Thoda height barha di image ke mutabiq
+    borderRadius: responsiveWidth(6),
+    borderWidth: 1,
+    borderColor: colors.appBgColor2,
+    backgroundColor: colors.black,
+    shadowColor: colors.appBgColor2,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 8,
+    elevation: 10,
   },
   inputField: {
     height: sizes.inputHeight,
@@ -140,7 +493,18 @@ export const appStyles = StyleSheet.create({
     backgroundColor: '#FFFF',
     borderRadius: 2.5,
   },
-
+  modalContainer: {
+    backgroundColor: colors.appBgColor1,
+    width: responsiveWidth(90),
+    borderRadius: responsiveWidth(4),
+    padding:12
+  },
+  modalbg: {
+    margin: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.modalbg
+  },
   buttonBorderd: {
     marginHorizontal: responsiveWidth(5),
     height: responsiveHeight(8),
@@ -158,13 +522,13 @@ export const appStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-   socialBtn: {
+  socialBtn: {
     width: responsiveWidth(25),
     height: responsiveHeight(6),
     borderRadius: responsiveWidth(26),
     borderWidth: responsiveWidth(.5),
     borderColor: colors.appColor6,
-    backgroundColor: colors.appBgColor2,
+    backgroundColor: colors.appBgColor6,
     justifyContent: 'center',
     alignItems: 'center',
 
@@ -204,6 +568,46 @@ export const appStyles = StyleSheet.create({
     color: colors.appTextColor3,
     fontFamily: appFonts.appTextBold
   },
+  radioCircle: {
+    height: responsiveWidth(4),
+    width: responsiveWidth(4),
+    borderRadius: responsiveWidth(4),
+    borderWidth: 1.5,
+    borderColor: colors.appColor2,
+    marginRight: responsiveWidth(.8)
+
+  },
+  radioDot: {
+    height: responsiveWidth(2),
+    width: responsiveWidth(2),
+    borderRadius: responsiveWidth(2),
+  },
+
+
+  mainCard: {
+    backgroundColor: '#000',
+    borderRadius: 15,
+    paddingHorizontal: responsiveWidth(4),
+    paddingVertical: responsiveWidth(2),
+    borderWidth: 1,
+    borderColor: '#1A1A1A',
+  },
+  checkbox: {
+    height: responsiveWidth(4),
+    width: responsiveWidth(4),
+    borderRadius: responsiveWidth(1),
+    borderWidth: responsiveWidth(.3),
+    borderColor: colors.appColor2,
+  },
+
+  cardContainer: {
+    borderRadius: responsiveWidth(3),
+    padding: responsiveWidth(4),
+    width: responsiveWidth(92),
+    borderWidth: 1,
+    borderColor: colors.appColor9,
+  },
+
   cardView: {
     marginHorizontal: responsiveWidth(5),
     borderRadius: sizes.cardRadius,
@@ -292,20 +696,20 @@ export const appStyles = StyleSheet.create({
   textColor2: {
     color: colors.appTextColor2
   },
-  textColor3:{
+  textColor3: {
     color: colors.appTextColor3
   },
   textGray: {
-    color: colors.appTextColor4
+    color: colors.appTextColor2
   },
   textDarkGray: {
     color: colors.appTextColor3
   },
   textLightGray: {
-    color: colors.appTextColor5
+    color: colors.appTextColor8
   },
   textPrimaryColor: {
-    color: colors.appColor1
+    color: colors.appTextColor4
   },
   textSecondaryColor: {
     color: colors.appColor2
@@ -314,7 +718,7 @@ export const appStyles = StyleSheet.create({
     color: colors.appColor4
   },
   textWhite: {
-    color: colors.appTextColor6
+    color: colors.appTextColor3
   },
   rowView: {
     flexDirection: 'row',
@@ -345,9 +749,9 @@ export const appStyles = StyleSheet.create({
     fontFamily: appFonts.appTextMedium
   },
   ButtonMedium: {
-    fontSize: fontSizes.medium,
+    fontSize: fontSizes.h6,
     color: '#000000',
-    fontFamily: appFonts.appTextBold,
+    fontFamily: appFonts.appTextSemiBold
     //letterSpacing:responsiveFontSize(5)
   },
   ButtonTextLarge: {
@@ -361,7 +765,7 @@ export const appStyles = StyleSheet.create({
     borderTopWidth: 0,
     //justifyContent: 'center',
     borderTopLeftRadius: sizes.cardRadius,
-   borderTopRightRadius: sizes.cardRadius,
+    borderTopRightRadius: sizes.cardRadius,
     // paddingTop: responsiveHeight(1),
     //borderRadius: sizes.buttonRadius,
     backgroundColor: colors.appColor1,
@@ -486,7 +890,7 @@ export const appStyles = StyleSheet.create({
   justifyContentSpaceEvenly: {
     justifyContent: 'space-evenly',
   },
-  justifyContentSpaceAround:{
+  justifyContentSpaceAround: {
     justifyContent: 'space-around'
   },
   justifyContentFlexend: {
@@ -510,10 +914,10 @@ export const appStyles = StyleSheet.create({
   textUnderlined: {
     textDecorationLine: 'underline'
   },
-  textError:{
-    color:colors.error
+  textError: {
+    color: colors.error
   },
-  textSuccess:{
-    color:colors.success
+  textSuccess: {
+    color: colors.success
   }
 })

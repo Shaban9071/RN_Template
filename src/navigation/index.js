@@ -13,39 +13,32 @@ import { navigationRef } from './rootNavigation';
 const MainStack = createNativeStackNavigator();
 
 export default function Navigation() {
-    const [loading, setLoading] = useState(true)
+     
 
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 2500);
-    })
 
-    if (loading)
-        return <Splash />
-    else
-        return (
-            <NavigationContainer
+    return (
+        <NavigationContainer
             ref={navigationRef}
+        >
+            <MainStack.Navigator
+                screenOptions={{ headerShown: false }}
+                initialRouteName={routes.splash}
             >
-                <MainStack.Navigator
-                    screenOptions={{ headerShown: false }}
-                    initialRouteName={routes.auth}
-                >
-                    <MainStack.Screen
-                        name={routes.auth}
-                        component={AuthNavigation}
-                    />
-                    <MainStack.Screen
-                        name={routes.app}
-                        component={AppNavigation}
-                    />
-                    <MainStack.Screen
-                        name={routes.common}
-                        component={CommonNavigation}
-                    />
-                </MainStack.Navigator>
-            </NavigationContainer>
-        );
+                <MainStack.Screen name={routes.splash} component={Splash} />
+                <MainStack.Screen
+                    name={routes.auth}
+                    component={AuthNavigation}
+                />
+                <MainStack.Screen
+                    name={routes.app}
+                    component={AppNavigation}
+                />
+                <MainStack.Screen
+                    name={routes.common}
+                    component={CommonNavigation}
+                />
+            </MainStack.Navigator>
+        </NavigationContainer>
+    );
 }
 

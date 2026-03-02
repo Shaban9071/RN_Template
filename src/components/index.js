@@ -21,17 +21,19 @@ import * as Rating from './ratings'
 import * as Switches from './switches'
 export *  from './appComponents'
 import AuthLayout from "./authLayout"
+import Stepper from "./stepper"
+import ProjectSummary from "./projectsummary"
 
 
 
 export {
     Wrapper, Text, Spacer,
-    Buttons, Icons,AuthLayout,
+    Buttons, Icons,AuthLayout,Stepper,
     TextInputs, Logos, Cards, Lines, Images,
     CheckBoxes, ScrollViews, Loaders,
     Modals, Toasts, Headers, Pickers,
     Switches,
-    Chips, StatusBars,Rating,
+    Chips, StatusBars,Rating,ProjectSummary
 
 }
 

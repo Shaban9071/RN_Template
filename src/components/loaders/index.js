@@ -40,9 +40,9 @@ export function Secondary ({ isVisible }) {
                 isVisible ?
                     <Wrapper isAbsoluteFill animation="fadeIn" style={[{ justifyContent: 'center', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.appBgColor1 + 'BF' }]}>
                         <Wrapper style={[appStyles.center, { backgroundColor: 'transparent' }]}>
-                            <BallIndicator color={colors.appColor1} size={sizes.icons.xxl} />
+                            <BallIndicator color={colors.appBgColor2} size={sizes.icons.xxl} />
                             <Spacer isBasic />
-                            <Text isRegular >Loading</Text>
+                            {/* <Text isRegular >Loading</Text> */}
                         </Wrapper>
                     </Wrapper>
                     :

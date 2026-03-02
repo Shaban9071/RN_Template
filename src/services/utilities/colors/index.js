@@ -1,3 +1,5 @@
+import { green } from "react-native-reanimated/lib/typescript/Colors";
+
 export const colors = {
   button: '#3c5abc',
   background: '#1F0808',
@@ -6,7 +8,29 @@ export const colors = {
   transparent: '#FFFFFF00',
   silver: '#F7F7F7',
   steel: '#CCCCCC',
-  buttonColor:"#F26631",
+  buttonColor: "#F26631",
+  modalbg:'#0A0A0A66',
+
+
+
+  placeholderTextColor: '#67777A',
+  placeholderBorderColor: '#898989',
+
+  parrot: '#50C99A',
+  yellow: '#F7C81D',
+  purple: '#B90DDC',
+  green: "#2ECC71",
+  sky: '#46AEC7',
+  red: '#FF2A2A',
+  darkOrange: '#FF7B00',
+  cardpurple: "#A020F0",
+  cardorange: "#FF8C00",
+  lightorange: '#FFA149',
+  lightyellow: '#FDD130',
+  lightseagreen: '#5BFFBF',
+  lightpurple: '#E251FF',
+  lightsky: '#61E0FF',
+
 
   ricePaper: 'rgba(255,255,255, 0.75)',
   frost: '#D8D8D8',
@@ -43,31 +67,40 @@ export const colors = {
 
   appGradiantColors: ['#4E20EA', 'rgba(214,48,49, 1)'],
 
-  appColor1: '#0D2533',
-  appColor2: '#898989',
-  appColor3: '#73A83980',
-  appColor5: '#F26631',
-  appColor6: '#374151',
-  appColor7: '#FF9A9A',
-  appColor8: '#FB7979',
-  appColor9: '#003162',
-  appColor10: '#FFDD00',
+  appColor1: '#0A0A0A',
+  appColor2: '#FFFFFF',
+  appColor3: '#F26631',
+  appColor4: '#9B9CAE',
+  appColor5: '#898989',
+  appColor6: '#67777A',
+  appColor7: '#374151',
+  appColor8: '#9B9CAE',
+  appColor9: '#4E4E4E',
+  appColor10: '#1A1A1A',
+  appColor11: '#A6A6A6',
+  appColor12: '#191919',
 
   appInputBgColor: "#17171754",
   appTextColor1: '#FFFFFF',
   // appTextColor1: '#000000',
-  appTextColor2: 'rgba(26,26,26, 1)',
-  appTextColor3: '#333333',
-  appTextColor4: '#898989',
-  appTextColor5: '#67777A',
-  appTextColor6: '#FFFFFF',
+  appTextColor2: '#898989',
+  appTextColor3: '#FFFFFF',
+  appTextColor4: '#F26631',
+  appTextColor5: '#9D9D9D',
+  appTextColor6: '#67777A',
   appTextColor7: '#DED9D9',
+  appTextColor8: '#CDCDCD',
+  appTextColor9: '#6E6E6E',
+  appTextColor10: '#707991',
 
-  appBgColor1: '#FFFFFF',
-  appBgColor2: '#17171754',
-  appBgColor3: '#E9E9E9',
-  appBgColor4: '#AAAAAA',
-  appBgColor5: '#A1A1A1',
-  appBgColor6: '#000000'
+  appBgColor1: '#0A0A0A',
+  appBgColor2: '#F26631',
+  appBgColor3: '#A1A1A1',
+  appBgColor4: "#0A0A0A",
+  appBgColor5: "#6E6E6E",
+  appBgColor6: '#17171754',
+  appBgColor7: '#A0A0A057',
+  appBgColor8: "#43434326",
+  appBgColor9: '#FFFFFF'
 }
 

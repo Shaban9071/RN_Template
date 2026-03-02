@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { View, Image, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList, Animated, Platform } from 'react-native'
+import { View, Image, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList, Animated, Platform, Pressable } from 'react-native'
 import { Icon } from '@rneui/base';
-import { colors, fontSizes, appFonts, sizes, appIcons, appStyles, HelpingMethods,responsiveHeight,responsiveWidth,responsiveFontSize } from '../../services';
+import { colors, fontSizes, appFonts, sizes, appIcons, appStyles, HelpingMethods, responsiveHeight, responsiveWidth, responsiveFontSize } from '../../services';
 import RNPickerSelect from 'react-native-picker-select'
 import * as Icons from '../icons';
 import * as TextInputs from '../textInput';
@@ -9,31 +9,31 @@ import Wrapper from '../wrapper';
 import Text from '../text';
 import Spacer from '../spacer';
 
-export function Primary  ({
+export function Primary({
     onDonePress, containerStyle, data, title, onChange,
     placeholder, error, value, itemKey,
     left, customIconLeft, iconSizeLeft, iconColorLeft,
     iconStyleLeft, iconNameLeft, mainContainerStyle, iconTypeLeft,
-    titleStatic
-})  {
+    titleStatic, isPressable,
+    rightIconName,rightIconType,isRightIcon,
+    onPressCalendar
+}) {
 
     const placeholderObject = {
         label: placeholder,
-        value: 'placeholder',
+        value: null, // 'placeholder' ki jagah null behtar hai dropdown logic ke liye
         color: '#909090',
     }
 
+    // Animated logic stays same...
     const [titleMarginBottom] = useState(new Animated.Value(value ? responsiveHeight(6) : 0))
-    //const [titleSize] = useState(new Animated.Value(fontSizes.regular))
-    const detaultTitleMarginBottom=responsiveHeight(4.5)
+    const detaultTitleMarginBottom = responsiveHeight(4.5)
     const FocusedTitleMarginBottom = detaultTitleMarginBottom
-    //const [titleMarginBottom, setTitleMarginBottom] = useState(0)
-    //const [titleSize, setTitleSize] = useState(fontSizes.input)
+
     const moveTitleUp = () => {
         Animated.timing(titleMarginBottom, {
             toValue: detaultTitleMarginBottom,
             duration: 250,
-            speed: 50,
             useNativeDriver: false
         }).start();
     };
@@ -41,157 +41,127 @@ export function Primary  ({
         Animated.timing(titleMarginBottom, {
             toValue: 0,
             duration: 250,
-            speed: 50,
             useNativeDriver: false
         }).start();
     };
-    const onChangeValue = (value) => {
-        value === 'placeholder' ? moveTitleDown() : moveTitleUp()
-    }
-    return (
-        <Wrapper
-            style={[{ marginHorizontal: sizes.marginHorizontal }, mainContainerStyle]}
-        >
-            {/* <ComponentWrapper>
-                <InputTitle>{title}</InputTitle>
-            </ComponentWrapper>
-            <Spacer height={sizes.TinyMargin} /> */}
-            {
-                    titleStatic ?
-                        <>
-                            <Text isInputTitle>{titleStatic}</Text>
-                        </>
 
-                        :
-                        null
-                }
-            <Wrapper style={[appStyles.inputContainerUnderLined, {
-                //borderRadius: sizes.b,
-                borderBottomWidth: 1,
-                borderBottomColor: colors.appColor1,
-                marginHorizontal: 0
-            }, containerStyle]}>
+    const onChangeValue = (value) => {
+        !value || value === 'placeholder' ? moveTitleDown() : moveTitleUp()
+    }
+
+    return (
+        <Wrapper  >
+            {titleStatic && <Text isInputTitle style={{ marginBottom: 2 }}>{titleStatic}</Text>}
+
+            <Wrapper style={[
                 {
-                    left ?
-                        left
-                        :
-                        customIconLeft ?
-                            <Wrapper style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <Icons.Custom icon={customIconLeft} size={iconSizeLeft ? iconSizeLeft : sizes.icons.medium} color={iconColorLeft ? iconColorLeft : colors.appTextColor3} containerStyle={iconStyleLeft} />
-                            </Wrapper>
-                            :
-                            iconNameLeft ?
-                                <Wrapper style={{ flex: 1, alignItems: 'flex-end' }}>
-                                    <Icon name={iconNameLeft} type={iconTypeLeft} size={iconSizeLeft ? iconSizeLeft : sizes.icons.medium} color={iconColorLeft ? iconColorLeft : colors.appTextColor1} iconStyle={iconStyleLeft} />
+                    borderWidth: 1,
+                    borderBottomWidth: 1,
+                    borderColor: '#6E6E6E', // Aapki image jaisa dark color
+                    borderRadius: responsiveWidth(2),
+                    backgroundColor: 'transparent',
+                    height: responsiveHeight(4.5), // Standard height
+                    justifyContent: 'center', // Vertical centering,
+                    width: responsiveWidth(38),
+
+                },
+                containerStyle
+            ]}>
+                {
+                    isPressable ?
+                        <Pressable onPress={onPressCalendar}>
+                            <Wrapper
+                                flexDirectionRow
+                                alignItemsCenter
+                                marginHorizontalTiny
+                            >
+                                <Text isRegTextTiny style={{
+                                    color: value ? 'white' : '#7A7A7A',
+
+                                }}>
+                                    {value ? value : placeholder}
+                                </Text>
+                                <Wrapper marginHorizontalTiny>
+                                    {
+                                        isRightIcon && <Icon
+                                            name={rightIconName ? rightIconName : "calendar-blank-outline"}
+                                            type={rightIconType ? rightIconType : 'material-community'}
+                                            size={responsiveFontSize(16)}
+                                            color={'#6E6E6E'}
+                                        />
+                                    }
                                 </Wrapper>
-                                :
-                                null
-                }
-                <Wrapper flex={8}>
-                    <Wrapper isAbsolute style={{ top: 0, bottom: 0, ...appStyles.center, backgroundColor: 'transparet', }}>
-                        <Wrapper style={{ marginBottom: value ? FocusedTitleMarginBottom : titleMarginBottom }}>
-                            <Text isInputTitle>{title}</Text>
-                        </Wrapper>
-                    </Wrapper>
-                    <RNPickerSelect
-                        onDonePress={onDonePress}
-                        onValueChange={(value, index) => {
-                            onChangeValue(value, index)
-                            onChange ? onChange(value, index) : null;
-                        }}
-                        value={value}
-                        itemKey={itemKey}
-                        items={data}
-                        placeholder={placeholderObject}
-                        useNativeAndroidPickerStyle={false}
-                        pickerProps={{ mode: 'dropdown' }}
-                        //  pickerProps={{ mode: 'dropdown',overflow: 'hidden', style: { overflow: 'hidden' } }}
-                        // pickerProps={{ style: { height: 214, overflow: 'hidden' } }}
-                        style={{
-                            //width: responsiveWidth(100),
-                            ...{
-                                //...PickerPrimaryStyles,
+                            </Wrapper>
+                        </Pressable> :
+
+                        <RNPickerSelect
+                            onDonePress={onDonePress}
+                            onValueChange={(value, index) => {
+                                onChangeValue(value)
+                                onChange ? onChange(value, index) : null;
+                            }}
+                            value={value}
+                            itemKey={itemKey}
+                            items={data}
+                            placeholder={placeholderObject}
+                            useNativeAndroidPickerStyle={false} // Custom styling ke liye zaroori hai
+                            style={{
                                 inputIOS: {
-                                    ...PickerPrimaryStyles.inputIOS,
-                                    paddingTop: title ? responsiveHeight(1.5) : null,
+                                    fontSize: fontSizes.tiny,
+                                    fontFamily: appFonts.appTextRegular,
+                                    color: 'white',
+                                    paddingLeft: responsiveWidth(4),
+                                    paddingRight: 40,
+                                    height: '100%',
+                                    textAlignVertical: 'center',
                                 },
                                 inputAndroid: {
-                                    ...PickerPrimaryStyles.inputAndroid,
-                                    paddingTop: title ? responsiveHeight(2.5) : null,
-                                }
-                            },
-                            //paddingTop: title ? Platform.OS === 'ios' ? responsiveHeight(1.5) : responsiveHeight(2.5) : null,
-                            iconContainer: {
-                                top: responsiveHeight(3.5),
-                                right: 0,
-                            },
-                        }}
-                        Icon={() =>
-                            <Icon name='chevron-thin-down' type='entypo' size={responsiveFontSize(1.5)} color={colors.appColor1} />
-                            // <CustomIcon
-                            //     icon={appIcons.dropdown_normal}
-                            //     size={responsiveFontSize(2)}
-                            // />
-                        }
+                                    fontSize: fontSizes.tiny,
+                                    fontFamily: appFonts.appTextRegular,
+                                    color: 'white',
+                                    paddingLeft: responsiveWidth(3),
+                                    paddingRight: 40,
+                                    height: responsiveHeight(5.5), // Android par height fix
+                                    textAlignVertical: 'center',
+                                    paddingBottom: 10, // Minor adjustment for text centering
+                                },
+
+                                placeholder: {
+                                    color: '#7A7A7A',
+                                },
+                                iconContainer: {
+                                    top: '30%', // Icon ko vertically center karne ke liye
+                                    right: 15,
+                                },
+                            }}
+                            Icon={() => (
+                                <Icon
+                                    name='chevron-thin-down'
+                                    type='entypo'
+                                    size={responsiveFontSize(12)}
+                                    color={'#6E6E6E'}
+                                />
+                            )}
+                        />
+                }
+
+
+            </Wrapper>
+
+            {error && (
+                <Wrapper animation="shake" style={{ marginTop: 5 }}>
+                    <Icons.WithText
+                        iconName="alert-circle-outline"
+                        text={error}
+                        tintColor={colors.error}
+                        iconSize={sizes.icons.tiny}
+                        textStyle={{ fontSize: fontSizes.small }}
                     />
                 </Wrapper>
-            </Wrapper>
-            {
-                error ?
-                    // <AbsoluteWrapper animation="shake" style={{ bottom: 0, right: sizes.marginHorizontal, left: 0, }}>
-                    //     <SmallText style={[{ color: colors.error, textAlign: 'right' }]}>{error}</SmallText>
-                    // </AbsoluteWrapper>
-                    <Wrapper style={{}} animation="shake">
-                        <Spacer isTiny />
-                        <Icons.WithText
-                            iconName="alert-circle-outline"
-                            //title="New"
-                            text={error}
-
-                            tintColor={colors.error}
-                            iconSize={sizes.icons.tiny}
-                            textStyle={[{ fontSize: fontSizes.small }]}
-                        />
-                    </Wrapper>
-                    :
-                    null
-            }
+            )}
         </Wrapper>
     );
 }
-
-const PickerPrimaryStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: fontSizes.medium,
-        fontFamily: appFonts.regular,
-        //paddingVertical: responsiveHeight(2),
-        height: sizes.inputHeight,
-        paddingHorizontal: 0,
-        marginHorizontal: 0,
-
-        //borderWidth: 1,
-        //borderColor: colors.appTextColor5,
-        //  borderRadius: 5,
-        color: 'black',
-        //paddingRight: 30, // to ensure the text is never behind the icon
-    },
-    inputAndroid: {
-        fontSize: fontSizes.medium,
-        fontFamily: appFonts.regular,
-        //paddingVertical: responsiveHeight(2),
-        height: sizes.inputHeight,
-        paddingHorizontal: 0,
-        marginHorizontal: 0,
-        //paddingTop: 2,
-        // borderWidth: 1,
-        // borderColor: colors.appTextColor5,
-        //borderRadius: 5,
-        color: 'black',
-        //paddingRight: 30, // to ensure the text is never behind the icon
-        //backgroundColor:'red'
-    },
-});
-
 
 export function Searchable({ placeholder, error, titleStyle, containerStyle, iconColor, inputBorderStyle, data, value, inputStyle, onPressItem, onPressAdd, title, onChangeText, right, left, tintColor, onFocus, onBlur }) {
     const searchInputRef = useRef(null)
@@ -291,3 +261,134 @@ export function Searchable({ placeholder, error, titleStyle, containerStyle, ico
     )
 }
 
+
+
+export function Secondary({
+    onDonePress, containerStyle, data, title, onChange,
+    placeholder, error, value, itemKey,
+    left, customIconLeft, iconSizeLeft, iconColorLeft,
+    iconStyleLeft, iconNameLeft, mainContainerStyle, iconTypeLeft,
+    titleStatic, isPressable,
+    rightIconName,rightIconType,isRightIcon,
+    onPressCalendar,
+    borderWidth,borderColor,
+    iconColor,placeholdeTextColor
+}) {
+
+    const placeholderObject = {
+        label: placeholder,
+        value: null, // 'placeholder' ki jagah null behtar hai dropdown logic ke liye
+        color: '#909090',
+    }
+
+    // Animated logic stays same...
+    const [titleMarginBottom] = useState(new Animated.Value(value ? responsiveHeight(6) : 0))
+    const detaultTitleMarginBottom = responsiveHeight(4.5)
+    const FocusedTitleMarginBottom = detaultTitleMarginBottom
+
+    const moveTitleUp = () => {
+        Animated.timing(titleMarginBottom, {
+            toValue: detaultTitleMarginBottom,
+            duration: 250,
+            useNativeDriver: false
+        }).start();
+    };
+    const moveTitleDown = () => {
+        Animated.timing(titleMarginBottom, {
+            toValue: 0,
+            duration: 250,
+            useNativeDriver: false
+        }).start();
+    };
+
+    const onChangeValue = (value) => {
+        !value || value === 'placeholder' ? moveTitleDown() : moveTitleUp()
+    }
+
+    return (
+        <Wrapper  >
+            {titleStatic && <Text isInputTitle style={{ marginBottom: 2 }}>{titleStatic}</Text>}
+
+            <Wrapper style={[
+                {
+                 
+                    borderRadius: responsiveWidth(4),
+                    backgroundColor: '#121212',
+                    height: responsiveHeight(4.5), // Standard height
+                    justifyContent: 'center', // Vertical centering,
+                    width: responsiveWidth(30),
+                    borderWidth:borderWidth,
+                    borderColor:borderColor
+
+                },
+                containerStyle
+            ]}>
+              
+
+                        <RNPickerSelect
+                            onDonePress={onDonePress}
+                            onValueChange={(value, index) => {
+                                onChangeValue(value)
+                                onChange ? onChange(value, index) : null;
+                            }}
+                            value={value}
+                            itemKey={itemKey}
+                            items={data}
+                            placeholder={placeholderObject}
+                            useNativeAndroidPickerStyle={false} // Custom styling ke liye zaroori hai
+                            style={{
+                                inputIOS: {
+                                    fontSize: fontSizes.tiny,
+                                    fontFamily: appFonts.appTextRegular,
+                                    color: 'white',
+                                    paddingLeft: responsiveWidth(4),
+                                    paddingRight: 40,
+                                    height: '100%',
+                                    textAlignVertical: 'center',
+                                },
+                                inputAndroid: {
+                                    fontSize: fontSizes.tiny,
+                                    fontFamily: appFonts.appTextRegular,
+                                    color: 'white',
+                                    paddingLeft: responsiveWidth(2),
+                                    paddingRight: 20,
+                                    height: responsiveHeight(5.5), // Android par height fix
+                                    textAlignVertical: 'center',
+                                    paddingBottom: 10, // Minor adjustment for text centering
+                                },
+
+                                placeholder: {
+                                    color: placeholdeTextColor?placeholdeTextColor:'#7A7A7A',
+                                },
+                                iconContainer: {
+                                    top: '30%', // Icon ko vertically center karne ke liye
+                                    right: 10,
+                                },
+                            }}
+                            Icon={() => (
+                                <Icon
+                                    name='chevron-thin-down'
+                                    type='entypo'
+                                    size={responsiveFontSize(12)}
+                                    color={iconColor?iconColor:'#6E6E6E'}
+                                />
+                            )}
+                        />
+               
+
+            </Wrapper>
+
+            {error && (
+                <Wrapper animation="shake" style={{ marginTop: 5 }}>
+                    <Icons.WithText
+                        iconName="alert-circle-outline"
+                        text={error}
+                        tintColor={colors.error}
+                        iconSize={sizes.icons.tiny}
+                        textStyle={{ fontSize: fontSizes.small }}
+                    />
+                </Wrapper>
+            )}
+        </Wrapper>
+    );
+}

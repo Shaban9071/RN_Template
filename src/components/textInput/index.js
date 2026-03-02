@@ -18,11 +18,14 @@ import {
   responsiveHeight,
   responsiveWidth,
   responsiveFontSize,
+  appImages,
+  appFonts,
 } from '../../services';
 import * as Icons from '../icons';
 import Wrapper from '../wrapper';
 import Text from '../text';
 import Spacer from '../spacer';
+import { Images } from '..';
 function Colored({
   iconNameRight,
   inputRef,
@@ -65,6 +68,12 @@ function Colored({
   iconStyleLeft,
   onPressIconLeft,
   placeholderTextColor,
+  sentIcon,
+  shareButton,
+  onPressShareButton,
+  onPressSendButton,
+  rightIcons,
+  placeholderTextSize
 }) {
   return (
     <TouchableOpacity
@@ -84,8 +93,8 @@ function Colored({
         style={[
           appStyles.inputContainerColored,
           {
-            borderRadius: sizes.inputRadius,
-            backgroundColor: colors.appBgColor2,
+            borderRadius: responsiveWidth(8),
+            backgroundColor: colors.black,
             marginHorizontal: 0,
           },
           inputContainerStyle,
@@ -110,12 +119,15 @@ function Colored({
             style={{
               alignItems: 'center',
               marginLeft: sizes.marginHorizontal / 2,
+              backgroundColor: colors.appColor12,
+              borderRadius: responsiveWidth(4)
+
             }}>
             <Icon
               name={iconNameLeft}
               type={iconTypeLeft}
               size={iconSizeLeft ? iconSizeLeft : sizes.icons.medium}
-              color={iconColorLeft ? iconColorLeft : colors.appTextColor4}
+              color={iconColorLeft ? iconColorLeft : colors.appTextColor3}
               iconStyle={iconStyleLeft}
               onPress={onPressIconLeft}
             />
@@ -142,7 +154,7 @@ function Colored({
               returnKeyType={returnKeyType}
               onSubmitEditing={onSubmitEditing}
               multiline={multiline}
-              placeholderTextColor={placeholderTextColor || '#21212180'}
+              placeholderTextColor={placeholderTextColor || '#DBDBDB'}
               keyboardType={keyboardType}
               onFocus={onFocus}
               onBlur={onBlur}
@@ -151,15 +163,72 @@ function Colored({
               style={[
                 appStyles.inputField,
                 {
+                  fontSize: placeholderTextSize ? placeholderTextSize : fontSizes.small,
                   width: null,
                   height: sizes.inputHeight,
                   paddingHorizontal: sizes.marginHorizontal,
+
                 },
                 inputStyle,
               ]}
             />
           )}
         </View>
+        {
+          rightIcons && (
+            <Wrapper flexDirectionRow marginHorizontalSmall>
+              {
+                shareButton && (
+                  <TouchableOpacity
+                    onPress={onPressShareButton}
+                    style={{
+                      borderRadius: responsiveWidth(6),
+                      backgroundColor: '#2F2F2F',
+                      alignContent: "center",
+                      justifyContent: "center",
+                      height: responsiveWidth(8),
+                      width: responsiveWidth(8)
+                    }}
+                  >
+                    <Icon
+                      name="attachment"
+                      type="material"
+                      size={responsiveFontSize(22)}
+                      color={colors.appTextColor1}
+                      style={{
+
+                        transform: [{ rotate: '135deg' }]
+                      }}
+                    />
+                  </TouchableOpacity>
+                )
+              }
+              <Spacer horizontal isSmall />
+              {
+                sentIcon && (
+                  <TouchableOpacity
+                    onPress={onPressSendButton}
+                    style={{
+                      borderRadius: responsiveWidth(4),
+                      backgroundColor: colors.appBgColor2,
+                      alignContent: "center",
+                      justifyContent: "center",
+                      height: responsiveWidth(8),
+                      width: responsiveWidth(8)
+                    }}
+                  >
+                    <Wrapper style={{ paddingHorizontal: 3 }}>
+                      <Images.SqareRound
+                        source={appImages.sentIconImge}
+                        size={responsiveFontSize(26)}
+                      />
+                    </Wrapper>
+                  </TouchableOpacity>
+                )
+              }
+            </Wrapper>
+          )
+        }
         <View style={{}}>
           {right ? (
             right
@@ -193,10 +262,11 @@ function Colored({
   );
 }
 function Bordered({
+  label, // Naya prop heading ke liye
   onPress,
   iconContainerStyle,
   autoFocus,
-  //right params
+  // right params
   right,
   iconNameRight,
   iconTypeRight,
@@ -204,7 +274,7 @@ function Bordered({
   iconColorRight,
   iconStyleRight,
   onPressIconRight,
-  //left params
+  // left params
   left,
   customIconLeft,
   iconNameLeft,
@@ -213,7 +283,7 @@ function Bordered({
   iconSizeLeft,
   iconStyleLeft,
   onPressIconLeft,
-  //input params
+  // input params
   placeholder,
   placeholderTextColor,
   onFocus,
@@ -222,107 +292,124 @@ function Bordered({
   value,
   containerStyle,
   inputStyle,
+  // Multiline params
+  multiline = false,
+  numberOfLines = 1,
+  textAlignVertical,
+  keyboardType,
+  editable,
+  maxLength
 }) {
   return (
-    <TouchableOpacity
-      disabled={!onPress}
-      onPress={onPress}
-      activeOpacity={1}
-      style={[
-        appStyles.inputContainerBorderd,
-        {
-          borderRadius: sizes.inputRadius,
-          borderWidth: 1,
-          borderColor: colors.appBgColor3,
-        },
-        containerStyle,
-      ]}>
-      {left ? (
-        left
-      ) : customIconLeft ? (
-        <Wrapper
-          style={[
-            { alignItems: 'center', marginLeft: sizes.marginHorizontal },
-            iconContainerStyle,
-          ]}>
-          <Icons.Custom
-            icon={customIconLeft}
-            size={iconSizeLeft ? iconSizeLeft : sizes.icons.medium}
-            color={iconColorLeft ? iconColorLeft : colors.appTextColor1}
-            containerStyle={iconStyleLeft}
-          />
+    <Wrapper >
+      {/* Agar label prop pass kiya ho to heading show hogi */}
+      {label && (
+        <Wrapper style={{ marginBottom: responsiveHeight(.5) }}>
+          <Text isSemiTextReg >{label}</Text>
         </Wrapper>
-      ) : iconNameLeft ? (
-        <Wrapper
-          style={[
-            { alignItems: 'center', marginLeft: sizes.marginHorizontal },
-            iconContainerStyle,
-          ]}>
-          <Icon
-            name={iconNameLeft}
-            type={iconTypeLeft}
-            size={iconSizeLeft ? iconSizeLeft : sizes.icons.medium}
-            color={iconColorLeft ? iconColorLeft : colors.appBgColor3}
-            iconStyle={iconStyleLeft}
-            onPress={onPressIconLeft}
-          />
-        </Wrapper>
-      ) : null}
-      <View style={{ flex: 1 }}>
-        {onPress ? (
-          <Wrapper
-            marginHorizontalBase
-            style={[
-              { height: sizes.inputHeight, justifyContent: 'center' },
-              inputStyle,
-            ]}>
-            <Text isMedium style={value ? null : appStyles.textLightGray}>
-              {value ? value : placeholder}
-            </Text>
+      )}
+
+      <TouchableOpacity
+        disabled={!onPress}
+        onPress={onPress}
+        activeOpacity={1}
+        style={[
+          appStyles.inputContainerBorderd,
+          {
+            borderRadius: responsiveWidth(2),
+            borderWidth: responsiveWidth(.2),
+            borderColor: '#6E6E6E',
+            backgroundColor: colors.black, // Dark theme background
+            height: multiline ? undefined : 30,
+            minHeight: multiline ? 70 : undefined,
+            alignItems: multiline ? 'flex-start' : 'center',
+            paddingVertical: multiline ? 5 : 0,
+
+          },
+          containerStyle,
+        ]}>
+
+        {/* Left Icon Logic */}
+        {left ? left : customIconLeft ? (
+          <Wrapper style={[{ alignItems: 'center', marginLeft: sizes.marginHorizontal }, iconContainerStyle]}>
+            <Icons.Custom
+              icon={customIconLeft}
+              size={iconSizeLeft || sizes.icons.medium}
+              color={iconColorLeft || colors.appTextColor1}
+            />
           </Wrapper>
-        ) : (
-          <TextInput
-            onChangeText={onChangeText}
-            value={value}
-            placeholder={placeholder}
-            onFocus={onFocus}
-            autoFocus={autoFocus}
-            placeholderTextColor={
-              placeholderTextColor ? placeholderTextColor : colors.appBgColor3
-            }
-            secureTextEntry={secureTextEntry}
-            style={[
-              appStyles.inputField,
-              {
-                width: null,
-                height: sizes.inputHeight,
-                paddingHorizontal: sizes.marginHorizontal / 2,
-              },
-              inputStyle,
-            ]}
-          />
-        )}
-      </View>
-      <View style={{}}>
-        {right ? (
-          right
-        ) : iconNameRight ? (
-          <Wrapper
-            style={{ alignItems: 'center', marginRight: sizes.marginHorizontal }}>
+        ) : iconNameLeft ? (
+          <Wrapper style={[{ alignItems: 'center', marginLeft: sizes.marginHorizontal }, iconContainerStyle]}>
             <Icon
-              name={iconNameRight}
-              type={iconTypeRight}
-              size={iconSizeRight ? iconSizeRight : sizes.icons.medium}
-              color={iconColorRight ? iconColorRight : colors.appTextColor5}
-              iconStyle={iconStyleRight}
-              onPress={onPressIconRight}
+              name={iconNameLeft}
+              type={iconTypeLeft}
+              size={iconSizeLeft || sizes.icons.medium}
+              color={iconColorLeft || colors.appBgColor3}
+              onPress={onPressIconLeft}
             />
           </Wrapper>
         ) : null}
-      </View>
-    </TouchableOpacity>
+
+        <View style={{ flex: 1 }}>
+          {onPress ? (
+            <Wrapper marginHorizontalBase style={[{ height: sizes.inputHeight, justifyContent: 'center' }, inputStyle]}>
+              <Text isRegTextSmall style={value ? { color: 'white' } : appStyles.textLightGray}>
+                {value ? value : placeholder}
+              </Text>
+            </Wrapper>
+          ) : (
+            <TextInput
+              onChangeText={onChangeText}
+              value={value}
+              placeholder={placeholder}
+              onFocus={onFocus}
+              autoFocus={autoFocus}
+              multiline={multiline}
+              numberOfLines={numberOfLines}
+              maxLength={maxLength}
+              keyboardType={keyboardType}
+              editable={editable}
+              placeholderTextColor={placeholderTextColor || colors.appBgColor3}
+              secureTextEntry={secureTextEntry}
+              textAlignVertical={multiline ? 'top' : (textAlignVertical || 'center')}
+              style={[
+
+                {
+                  fontSize: responsiveFontSize(11),
+                  fontFamily: appFonts.appTextRegular,
+                  width: null,
+                  color: 'white',
+                  paddingTop: 2,
+                  paddingHorizontal: sizes.marginHorizontal / 2,
+
+                  paddingTop: multiline ? 2 : 0, // Multiline mein thoda niche se shuru hoga
+                  paddingBottom: multiline ? 0 : 0,
+
+                },
+                inputStyle,
+              ]}
+            />
+          )}
+        </View>
+
+        {/* Right Icon Logic */}
+        <View>
+          {right ? right : iconNameRight ? (
+            <Wrapper style={{ alignItems: 'center', marginRight: sizes.marginHorizontal }}>
+              <Icon
+                name={iconNameRight}
+                type={iconTypeRight}
+                size={iconSizeRight || sizes.icons.medium}
+                color={iconColorRight || colors.appTextColor5}
+                onPress={onPressIconRight}
+              />
+            </Wrapper>
+          ) : null}
+        </View>
+      </TouchableOpacity>
+    </Wrapper>
   );
-};
+}
 function Underlined({
   onPress,
   inputRef,
@@ -433,7 +520,7 @@ function Underlined({
           backgroundColor: colors.appInputBgColor,
           borderRadius: 12,
           borderBottomWidth: 1,
-          borderColor: colors.appTextColor4,
+          borderColor: colors.placeholderBorderColor,
           paddingHorizontal: 10,
 
 
@@ -546,7 +633,7 @@ function Underlined({
                     placeholderTextColor={
                       placeholderTextColor
                         ? placeholderTextColor
-                        : colors.appTextColor5
+                        : colors.placeholderTextColor
                     }
                     secureTextEntry={secureTextEntry}
                     style={[
@@ -575,7 +662,7 @@ function Underlined({
               <Wrapper alignItemsFlexEnd style={[styles.iconContainer]}>
                 <Icon
                   name={iconNameRight}
-                  type={iconTypeRight?iconTypeRight:"material-community"}
+                  type={iconTypeRight ? iconTypeRight : "material-community"}
                   size={iconSizeRight ? iconSizeRight : sizes.icons.medium}
                   color={iconColorRight ? iconColorRight : colors.appTextColor1}
                   iconStyle={iconStyleRight}
@@ -583,23 +670,25 @@ function Underlined({
                 />
               </Wrapper>
             ) : null}
-           
+
           </Wrapper>
-          {error ? (
-            <Wrapper style={{}} animation="shake">
-              <Spacer isTiny />
-              <Icons.WithText
-                iconName="alert-circle-outline"
-                //title="New"
-                text={error}
-                tintColor={colors.error}
-                iconSize={sizes.icons.tiny}
-                textStyle={[{ fontSize: fontSizes.small }]}
-              />
-            </Wrapper>
-          ) : null}
+
         </Wrapper>
+        {error ? (
+          <Wrapper style={{}} marginHorizontalBase>
+            <Spacer isTiny />
+            <Icons.WithText
+              // iconName="alert-circle-outline"
+              //title="New"
+              text={error}
+              tintColor={colors.error}
+              // iconSize={sizes.icons.tiny}
+              textStyle={[{ fontSize: fontSizes.tiny }]}
+            />
+          </Wrapper>
+        ) : null}
       </TouchableOpacity>
+
     </Wrapper>
   );
 };
@@ -611,6 +700,8 @@ function SearchBar({
   onChangeText,
   right,
   onPressCross,
+  iconStyle,
+  placeholderTextColor,
   ...props
 }) {
   return (
@@ -619,20 +710,26 @@ function SearchBar({
       onChangeText={onChangeText}
       iconNameLeft="search"
       iconTypeLeft="feather"
-      iconSizeLeft={sizes.icons.medium}
+      iconSizeLeft={sizes.icons.tiny}
       placeholder={placeholder ? placeholder : 'Search'}
       inputContainerStyle={inputContainerStyle}
       iconNameRight={value && onPressCross && 'close-circle'}
       iconTypeRight="ionicon"
+      iconStyleLeft={iconStyle}
       onPressIconRight={onPressCross}
+      placeholderTextSize={fontSizes.tiny}
       right={right}
       inputStyle={{
         height: responsiveHeight(6),
         paddingHorizontal: sizes.marginHorizontal / 2,
       }}
+      placeholderTextColor={placeholderTextColor}
       {...props}
     />
   );
 };
+
+
+
 
 export { Colored, Bordered, Underlined, SearchBar };

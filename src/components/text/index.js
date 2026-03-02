@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
-import { appStyles,  } from '../../services';
+import { appStyles, } from '../../services';
 
 export default function ({
     style,
@@ -21,6 +21,59 @@ export default function ({
     isButtonRegular,
     isButtonMedium,
     isButtonLarge,
+    //light Text
+    islightTextTiny,
+    islightTextSmall,
+    islightTextReg,
+    islightTextMed,
+    //Regular Text
+    isRegTextTiny,
+    isRegTextSmall,
+    isRegTextReg,
+    isRegTextMed,
+    isRegTextH1,
+    isRegTextH2,
+    isRegTextH3,
+    isRegTextH4,
+    isRegTextH5,
+    isRegTextH6,
+    //Med Text
+    isMedTextTiny,
+    isMedTextSmall,
+    isMedTextReg,
+    isMedTextMed,
+    isMedTextH1,
+    isMedTextH2,
+    isMedTextH3,
+    isMedTextH4,
+    isMedTextH5,
+    isMedTextH6,
+    //Semi-Bold Text
+    isSemiTextTiny,
+    isSemiTextSmall,
+    isSemiTextReg,
+    isSemiTextMed,
+    isSemiTextH1,
+    isSemiTextH2,
+    isSemiTextH3,
+    isSemiTextH4,
+    isSemiTextH5,
+    isSemiTextH6,
+
+    //Bold Text
+    isBoldTextTiny,
+    isBoldTextSmall,
+    isBoldTextReg,
+    isBoldTextMed,
+    isBoldTextH1,
+    isBoldTextH2,
+    isBoldTextH3,
+    isBoldTextH4,
+    isBoldTextH5,
+    isBoldTextH6,
+
+
+
     //align text
     alignTextCenter,
     alignTextRight,
@@ -39,7 +92,7 @@ export default function ({
     isMediumFont,
     isRegularFont,
     isLightFont,
-    ...props })  {
+    ...props }) {
     return (
         <Text
             style={[
@@ -56,7 +109,60 @@ export default function ({
                 isRegular && styles.regularTextStyle,
                 isSmall && styles.smallTextStyle,
                 isTiny && styles.tinyTextStyle,
-                isXTiny&&appStyles.xTinyText,
+                isXTiny && appStyles.xTinyText,
+
+                //light Text
+                islightTextTiny && appStyles.lightTextTiny,
+                islightTextSmall && appStyles.lightTextSmall,
+                islightTextReg && appStyles.lightTextRegular,
+                islightTextMed && appStyles.lightTextMedium,
+                //Regular Text
+                isRegTextTiny && appStyles.regTextTiny,
+                isRegTextSmall && appStyles.regTextSmall,
+                isRegTextReg && appStyles.regTextRegular,
+                isRegTextMed && appStyles.regTextMedium,
+                isRegTextH1 && appStyles.regTextH1,
+                isRegTextH2 && appStyles.regTextH2,
+                isRegTextH3 && appStyles.regTextH3,
+                isRegTextH4 && appStyles.regTextH4,
+                isRegTextH5 && appStyles.regTextH5,
+                isRegTextH6 && appStyles.regTextH6,
+                //Regular Text
+                isMedTextTiny && appStyles.medTextTiny,
+                isMedTextSmall && appStyles.medTextSmall,
+                isMedTextReg && appStyles.medTextRegular,
+                isMedTextMed && appStyles.medTextMedium,
+                isMedTextH1 && appStyles.medTextH1,
+                isMedTextH2 && appStyles.medTextH2,
+                isMedTextH3 && appStyles.medTextH3,
+                isMedTextH4 && appStyles.medTextH4,
+                isMedTextH5 && appStyles.medTextH5,
+                isMedTextH6 && appStyles.medTextH6,
+                //Semi-Bold Text
+                isSemiTextTiny && appStyles.semiTextTiny,
+                isSemiTextSmall && appStyles.semiTextSmall,
+                isSemiTextReg && appStyles.semiTextRegular,
+                isSemiTextMed && appStyles.semiTextMedium,
+                isSemiTextH1 && appStyles.semiTextH1,
+                isSemiTextH2 && appStyles.semiTextH2,
+                isSemiTextH3 && appStyles.semiTextH3,
+                isSemiTextH4 && appStyles.semiTextH4,
+                isSemiTextH5 && appStyles.semiTextH5,
+                isSemiTextH6 && appStyles.semiTextH6,
+                //Bold Text
+                isBoldTextTiny && appStyles.boldTextTiny,
+                isBoldTextSmall && appStyles.boldTextSmall,
+                isBoldTextReg && appStyles.boldTextRegular,
+                isBoldTextMed && appStyles.boldTextMedium,
+                isBoldTextH1 && appStyles.boldTextH1,
+                isBoldTextH2 && appStyles.boldTextH2,
+                isBoldTextH3 && appStyles.boldTextH3,
+                isBoldTextH4 && appStyles.boldTextH4,
+                isBoldTextH5 && appStyles.boldTextH5,
+                isBoldTextH6 && appStyles.boldTexth6,
+
+
+
 
                 isInputTitle && styles.inputTitleStyle,
                 isButtonRegular && styles.ButtonTextRegularStyle,
@@ -66,7 +172,7 @@ export default function ({
                 alignTextCenter && appStyles.textCenter,
                 alignTextRight && appStyles.alignTextRight,
                 //text colors
-                isTextColor2&&appStyles.textColor2,
+                isTextColor2 && appStyles.textColor2,
                 isDarkGray && appStyles.textDarkGray,
                 isGray && appStyles.textGray,
                 isLightGray && appStyles.textLightGray,
@@ -127,8 +233,7 @@ const styles = StyleSheet.create({
         ...appStyles.textTiny
     },
     inputTitleStyle: {
-        ...appStyles.textRegular,
-        ...appStyles.fontMedium,
+        ...appStyles.medTextSmall
         //...appStyles.tex
     },
     ButtonTextRegularStyle: {

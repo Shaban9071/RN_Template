@@ -11,7 +11,7 @@ export default function () {
   console.log('useReduxStore auth: ',auth)
   console.log('useReduxStore app: ',app)
 
-  const {signedInUser} = auth;
+  const {signedInUser,isLoggedIn} = auth;
   const {isBottomTabVisible} = app;
 
   return {
@@ -20,6 +20,7 @@ export default function () {
     app,
     //auth states
     signedInUser,
+    isLoggedIn,
     //app states
     isBottomTabVisible,
     //auth actions
